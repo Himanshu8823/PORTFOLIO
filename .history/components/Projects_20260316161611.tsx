@@ -1,0 +1,300 @@
+"use client";
+import { useEffect, useRef, useState } from "react";
+
+function useReveal(delay = 0) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setTimeout(() => el.classList.add("visible"), delay);
+    }, { threshold: 0.05 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [delay]);
+  return ref;
+}
+
+function ProjectCard({ project, index }: { project: any; index: number }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [hovered, setHovered] = useState(false);
+  const rafRef = useRef<number | null>(null);
+  const pendingTiltRef = useRef({ x: 0, y: 0 });
+
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = cardRef.current!.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = (e.clientX - cx) / (rect.width / 2);
+    const dy = (e.clientY - cy) / (rect.height / 2);
+    pendingTiltRef.current = { x: dy * -5, y: dx * 5 };
+
+    if (rafRef.current !== null) return;
+    rafRef.current = requestAnimationFrame(() => {
+      setTilt(pendingTiltRef.current);
+      rafRef.current = null;
+    });
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={onMouseMove}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => {
+        if (rafRef.current !== null) {
+          cancelAnimationFrame(rafRef.current);
+          rafRef.current = null;
+        }
+        setTilt({ x: 0, y: 0 });
+        setHovered(false);
+      }}
+      className="hover-target"
+      style={{
+        perspective: 800,
+        cursor: 'none',
+        willChange: 'transform',
+      }}
+    >
+      <div style={{
+        transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateZ(${hovered ? 6 : 0}px)`,
+        transition: 'transform 0.24s cubic-bezier(0.22, 1, 0.36, 1)',
+        transformStyle: 'preserve-3d',
+        willChange: 'transform',
+        backfaceVisibility: 'hidden',
+      }}>
+        <div className="glass-card" style={{
+          padding: '32px',
+          position: 'relative',
+          overflow: 'hidden',
+          clipPath: 'polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px))',
+          borderColor: hovered ? project.color.replace(')', ', 0.4)').replace('rgb', 'rgba') : 'var(--glass-border)',
+          transition: 'border-color 0.3s',
+        }}>
+          {/* Color splash */}
+          <div style={{
+            position: 'absolute', top: -40, right: -40,
+            width: 160, height: 160,
+            borderRadius: '50%',
+            background: `radial-gradient(circle, ${project.accentBg} 0%, transparent 70%)`,
+            transition: 'opacity 0.3s',
+            opacity: hovered ? 1 : 0.5,
+            pointerEvents: 'none',
+          }} />
+
+          {/* Number */}
+          <div style={{
+            position: 'absolute', top: 20, right: 28,
+            fontFamily: 'var(--font-display)',
+            fontSize: '3.5rem',
+            fontWeight: 800,
+            color: 'rgba(255,255,255,0.04)',
+            lineHeight: 1,
+            userSelect: 'none',
+          }}>
+            {String(index + 1).padStart(2, '0')}
+          </div>
+
+          {/* Header */}
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: project.color, letterSpacing: '0.15em', marginBottom: 8, textTransform: 'uppercase' }}>
+              {project.type}
+            </div>
+            <h3 style={{
+              fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 700,
+              color: 'var(--text)', lineHeight: 1.3, marginBottom: 8,
+            }}>
+              {project.title}
+            </h3>
+          </div>
+
+          <p style={{
+            fontFamily: 'var(--font-body)', fontSize: '0.875rem', lineHeight: 1.7,
+            color: 'rgba(232,244,248,0.6)', marginBottom: 20,
+          }}>
+            {project.desc}
+          </p>
+
+          {/* Highlights */}
+          <div style={{ marginBottom: 20 }}>
+            {project.highlights.map((h: string, i: number) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 6 }}>
+                <span style={{ color: project.color, fontSize: '0.7rem', marginTop: 3, flexShrink: 0 }}>◆</span>
+                <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8rem', color: 'rgba(232,244,248,0.55)', lineHeight: 1.5 }}>{h}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Tech tags */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 24 }}>
+            {project.tech.map((t: string) => (
+              <span key={t} className="tag" style={{ borderColor: `${project.color.replace(')', ', 0.3)').replace('rgb', 'rgba')}`, color: project.color }}>
+                {t}
+              </span>
+            ))}
+          </div>
+
+          {/* Links */}
+          <div style={{ display: 'flex', gap: 12 }}>
+            <a href={project.demo || '#'} target="_blank" className="hover-target" style={{
+              fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.1em',
+              padding: '8px 20px',
+              border: `1px solid ${project.color}`,
+              color: project.color, textDecoration: 'none',
+              clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
+              transition: 'background 0.3s',
+              background: hovered ? `${project.color.replace(')', ', 0.1)').replace('rgb', 'rgba')}` : 'transparent',
+            }}>
+              Live Demo →
+            </a>
+            <a href={project.github || '#'} target="_blank" className="hover-target" style={{
+              fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.1em',
+              padding: '8px 20px',
+              border: '1px solid rgba(74,96,112,0.4)',
+              color: 'var(--muted)', textDecoration: 'none',
+              clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
+            }}>
+              GitHub ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const projects = [
+  {
+    title: "MultiVendor Ordering & POS Platform",
+    type: "Full Stack Application",
+    desc: "A comprehensive restaurant management platform enabling customers to search restaurants, order food, and book tables — with a powerful POS system for restaurant owners.",
+    highlights: [
+      "Role-based POS system (owner/manager/cashier/waiter)",
+      "Real-time order sync between website and POS",
+      "Dynamic inventory management and sales analytics",
+    ],
+    tech: ['PHP', 'MySQL', 'JavaScript', 'REST APIs'],
+    color: 'rgb(0, 240, 255)',
+    accentBg: 'rgba(0,240,255,0.1)',
+    demo: '#',
+    github: '#',
+  },
+  {
+    title: "AI-Powered Recipe Generator",
+    type: "AI / Web Application",
+    desc: "A personalized nutrition platform that generates intelligent recipe recommendations using AI with filters for calories, allergies, and cuisines.",
+    highlights: [
+      "Reduced food waste by 25% via ingredient-matching algorithms",
+      "Personalized filters for calories, allergies, cuisines",
+      "MySQL favorites system for user preferences",
+    ],
+    tech: ['Python', 'Flask', 'MySQL', 'Spoonacular API'],
+    color: 'rgb(123, 47, 255)',
+    accentBg: 'rgba(123,47,255,0.1)',
+    demo: '#',
+    github: '#',
+  },
+  {
+    title: "GHRhack 2.0 — Official Website",
+    type: "Frontend / Performance",
+    desc: "The official hackathon platform for GHRHack 2.0, featuring immersive animations, participant onboarding, problem statements, and sponsor showcases.",
+    highlights: [
+      "Advanced GSAP & Framer Motion animations",
+      "Scroll-based effects and smooth page transitions",
+      "SEO-optimized with Next.js optimized routing",
+    ],
+    tech: ['Next.js', 'Tailwind CSS', 'GSAP', 'Framer Motion', 'Vercel'],
+    color: 'rgb(255, 60, 172)',
+    accentBg: 'rgba(255,60,172,0.1)',
+    demo: '#',
+    github: '#',
+  },
+  {
+    title: "Advanced Food Ordering System",
+    type: "High Priority / Full Stack",
+    desc: "Designed and developed a multi-restaurant ordering system that enables customers to browse menus, place orders, and manage bookings with a centralized admin flow.",
+    highlights: [
+      "Multi-restaurant management with centralized dashboard",
+      "Real-time ordering flow and booking operations",
+      "Optimized backend + AJAX interactions for smooth UX",
+    ],
+    tech: ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'AJAX', 'PHP', 'MySQL'],
+    color: 'rgb(0, 240, 255)',
+    accentBg: 'rgba(0,240,255,0.1)',
+    demo: 'https://www.youtube.com/embed/Q75hhNeqsas',
+    github: '#',
+  },
+  {
+    title: "Student Information Management",
+    type: "High Priority / Management System",
+    desc: "A comprehensive web-based Student Information Management System (SIMS) for handling student records, data workflows, and administration tasks efficiently.",
+    highlights: [
+      "Structured student data management and retrieval",
+      "Admin-focused workflows for day-to-day operations",
+      "Reliable CRUD architecture with clean UI patterns",
+    ],
+    tech: ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'AJAX', 'PHP', 'MySQL'],
+    color: 'rgb(123, 47, 255)',
+    accentBg: 'rgba(123,47,255,0.1)',
+    demo: 'https://www.youtube.com/embed/XcW8Z0bnXJk',
+    github: '#',
+  },
+  {
+    title: "Dairy Farm Management System",
+    type: "High Priority / Management System",
+    desc: "A comprehensive web platform for managing dairy farm operations including records, processes, and daily management tasks with better operational visibility.",
+    highlights: [
+      "Streamlined farm record and operations management",
+      "Web-based modules for easier monitoring and control",
+      "Consistent database-driven workflows with secure access",
+    ],
+    tech: ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'AJAX', 'PHP', 'MySQL'],
+    color: 'rgb(255, 60, 172)',
+    accentBg: 'rgba(255,60,172,0.1)',
+    demo: 'https://www.youtube.com/embed/IveoxkwwnIg',
+    github: '#',
+  },
+];
+
+export default function Projects() {
+  const r1 = useReveal();
+  const [showAllProjects, setShowAllProjects] = useState(false);
+  const primaryProjectCount = 6;
+  const visibleProjects = showAllProjects ? projects : projects.slice(0, primaryProjectCount);
+  const hasMoreProjects = projects.length > primaryProjectCount;
+
+  return (
+    <section id="projects" style={{ padding: '120px 60px' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div className="reveal" ref={r1} style={{ marginBottom: 60 }}>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, letterSpacing: '-0.02em' }}>
+            Featured Work
+          </h2>
+          <div className="cyber-divider" style={{ marginTop: 16, maxWidth: 300 }} />
+          <p style={{ marginTop: 16, fontFamily: 'var(--font-body)', fontSize: '1rem', color: 'rgba(232,244,248,0.5)', maxWidth: 500 }}>
+            A selection of projects that showcase my engineering skills and problem-solving approach.
+          </p>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 24 }}>
+          {visibleProjects.map((p, i) => (
+            <ProjectCard key={p.title} project={p} index={i} />
+          ))}
+        </div>
+
+        {hasMoreProjects && (
+          <div style={{ marginTop: 32, display: 'flex', justifyContent: 'center' }}>
+            <button
+              className="btn-primary hover-target"
+              onClick={() => setShowAllProjects(v => !v)}
+              style={{ fontSize: '0.72rem' }}
+            >
+              {showAllProjects ? 'Show Less Projects' : 'More Projects'}
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}

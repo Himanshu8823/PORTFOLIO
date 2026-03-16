@@ -196,7 +196,7 @@ const projects = [
     color: 'rgb(0, 240, 255)',
     accentBg: 'rgba(0,240,255,0.1)',
     demo: '#',
-    github: 'https://github.com/Himanshu8823/Restaurant',
+    github: '#',
   },
   {
     title: "AI-Powered Recipe Generator",
@@ -226,7 +226,7 @@ const projects = [
     color: 'rgb(123, 47, 255)',
     accentBg: 'rgba(123,47,255,0.1)',
     demo: 'https://youtu.be/XcW8Z0bnXJk',
-    github: 'https://github.com/Himanshu8823/Student-Information-Management',
+    github: '#',
   },
   {
     title: "Dairy Farm Management System",

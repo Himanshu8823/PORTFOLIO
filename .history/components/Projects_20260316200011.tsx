@@ -196,7 +196,7 @@ const projects = [
     color: 'rgb(0, 240, 255)',
     accentBg: 'rgba(0,240,255,0.1)',
     demo: '#',
-    github: 'https://github.com/Himanshu8823/Restaurant',
+    github: '#',
   },
   {
     title: "AI-Powered Recipe Generator",
@@ -214,6 +214,21 @@ const projects = [
     github: 'https://github.com/Himanshu8823/Recipe-Generator',
   },
   {
+    title: "Advanced Food Ordering System",
+    type: "High Priority / Full Stack",
+    desc: "Designed and developed a multi-restaurant ordering system that enables customers to browse menus, place orders, and manage bookings with a centralized admin flow.",
+    highlights: [
+      "Multi-restaurant management with centralized dashboard",
+      "Real-time ordering flow and booking operations",
+      "Optimized backend + AJAX interactions for smooth UX",
+    ],
+    tech: ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'AJAX', 'PHP', 'MySQL'],
+    color: 'rgb(0, 240, 255)',
+    accentBg: 'rgba(0,240,255,0.1)',
+    demo: 'https://youtu.be/Q75hhNeqsas',
+    github: '#',
+  },
+  {
     title: "Student Information Management",
     type: "High Priority / Management System",
     desc: "A comprehensive web-based Student Information Management System (SIMS) for handling student records, data workflows, and administration tasks efficiently.",
@@ -226,7 +241,7 @@ const projects = [
     color: 'rgb(123, 47, 255)',
     accentBg: 'rgba(123,47,255,0.1)',
     demo: 'https://youtu.be/XcW8Z0bnXJk',
-    github: 'https://github.com/Himanshu8823/Student-Information-Management',
+    github: '#',
   },
   {
     title: "Dairy Farm Management System",

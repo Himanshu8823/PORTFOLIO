@@ -379,7 +379,6 @@ export default function Hero() {
               { label: 'LinkedIn', href: 'https://www.linkedin.com/in/himanshu-kawale-69912b189', icon: 'in' },
               { label: 'GitHub', href: 'https://github.com/himanshu8823', icon: 'gh' },
               { label: 'Mail', href: 'mailto:himanshukawale45@gmail.com', icon: '@' },
-              { label: 'Resume', href: '/Himanshu_Resume.pdf', icon: 'cv' },
             ].map(s => (
               <a key={s.label} href={s.href} target="_blank" className="hover-target" style={{
                 width: 36, height: 36,

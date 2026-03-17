@@ -123,11 +123,8 @@ export default function Contact() {
                 { icon: '📞', label: 'Phone', value: '+91 7558213669', href: 'tel:+917558213669' },
                 { icon: '💼', label: 'LinkedIn', value: 'Connect on LinkedIn', href: 'https://www.linkedin.com/in/himanshu-kawale-69912b189' },
                 { icon: '🐙', label: 'GitHub', value: 'github.com/himanshu8823', href: 'https://github.com/himanshu8823' },
-                { icon: '📄', label: 'Resume', value: 'View Resume (PDF)', href: '/Himanshu_Resume.pdf' },
               ].map(c => (
-                <a key={c.label} href={c.href}
-                  target={c.href.startsWith('http') || c.href.endsWith('.pdf') ? '_blank' : undefined}
-                  rel={c.href.startsWith('http') || c.href.endsWith('.pdf') ? 'noopener noreferrer' : undefined}
+                <a key={c.label} href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined}
                   className="glass-card hover-target"
                   style={{
                     padding: '16px 20px',

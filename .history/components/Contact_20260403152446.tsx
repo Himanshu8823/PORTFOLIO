@@ -80,7 +80,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="contact-section" style={{ padding: '120px 60px', position: 'relative', overflow: 'hidden' }}>
+    <section id="contact" style={{ padding: '120px 60px', position: 'relative', overflow: 'hidden' }}>
       {/* Glow */}
       <div style={{
         position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)',
@@ -100,7 +100,7 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60 }}>
           {/* Left: Info */}
           <div className="reveal" ref={r2}>
             <div style={{ marginBottom: 40 }}>
@@ -226,7 +226,7 @@ export default function Contact() {
         </div>
 
         {/* Footer */}
-        <div className="contact-footer" style={{
+        <div style={{
           marginTop: 80, paddingTop: 32,
           borderTop: '1px solid rgba(74,96,112,0.2)',
           display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16,

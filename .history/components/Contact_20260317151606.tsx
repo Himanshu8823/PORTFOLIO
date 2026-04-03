@@ -1,9 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import type { IconType } from "react-icons";
-import { FaArrowRightLong, FaCircleCheck, FaFileLines, FaGithub, FaLinkedinIn } from "react-icons/fa6";
-import { MdEmail, MdPhone } from "react-icons/md";
 
 function useReveal(delay = 0) {
   const ref = useRef<HTMLDivElement>(null);
@@ -80,7 +77,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="contact-section" style={{ padding: '120px 60px', position: 'relative', overflow: 'hidden' }}>
+    <section id="contact" style={{ padding: '120px 60px', position: 'relative', overflow: 'hidden' }}>
       {/* Glow */}
       <div style={{
         position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)',
@@ -100,7 +97,7 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60 }}>
           {/* Left: Info */}
           <div className="reveal" ref={r2}>
             <div style={{ marginBottom: 40 }}>
@@ -122,12 +119,12 @@ export default function Contact() {
             {/* Contact cards */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {[
-                { icon: MdEmail, label: 'Email', value: 'himanshukawale45@gmail.com', href: 'mailto:himanshukawale45@gmail.com' },
-                { icon: MdPhone, label: 'Phone', value: '+91 7558213669', href: 'tel:+917558213669' },
-                { icon: FaLinkedinIn, label: 'LinkedIn', value: 'Connect on LinkedIn', href: 'https://www.linkedin.com/in/himanshu-kawale-69912b189' },
-                { icon: FaGithub, label: 'GitHub', value: 'github.com/himanshu8823', href: 'https://github.com/himanshu8823' },
-                { icon: FaFileLines, label: 'Resume', value: 'View Resume (PDF)', href: '/Himanshu_Resume.pdf' },
-              ].map((c: { icon: IconType; label: string; value: string; href: string }) => (
+                { icon: '✉', label: 'Email', value: 'himanshukawale45@gmail.com', href: 'mailto:himanshukawale45@gmail.com' },
+                { icon: '📞', label: 'Phone', value: '+91 7558213669', href: 'tel:+917558213669' },
+                { icon: '💼', label: 'LinkedIn', value: 'Connect on LinkedIn', href: 'https://www.linkedin.com/in/himanshu-kawale-69912b189' },
+                { icon: '🐙', label: 'GitHub', value: 'github.com/himanshu8823', href: 'https://github.com/himanshu8823' },
+                { icon: '📄', label: 'Resume', value: 'View Resume (PDF)', href: '/Himanshu_Resume.pdf' },
+              ].map(c => (
                 <a key={c.label} href={c.href}
                   target={c.href.startsWith('http') || c.href.endsWith('.pdf') ? '_blank' : undefined}
                   rel={c.href.startsWith('http') || c.href.endsWith('.pdf') ? 'noopener noreferrer' : undefined}
@@ -141,14 +138,12 @@ export default function Contact() {
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(0,240,255,0.3)'; (e.currentTarget as HTMLElement).style.background = 'rgba(0,240,255,0.05)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--glass-border)'; (e.currentTarget as HTMLElement).style.background = 'var(--glass)'; }}
                 >
-                  <span style={{ fontSize: '1.2rem', flexShrink: 0, display: 'inline-flex' }}>
-                    <c.icon />
-                  </span>
+                  <span style={{ fontSize: '1.2rem', flexShrink: 0 }}>{c.icon}</span>
                   <div>
                     <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--muted)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 2 }}>{c.label}</div>
                     <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', color: 'var(--accent)' }}>{c.value}</div>
                   </div>
-                  <span style={{ marginLeft: 'auto', color: 'var(--muted)', fontSize: '0.8rem', display: 'inline-flex' }}><FaArrowRightLong /></span>
+                  <span style={{ marginLeft: 'auto', color: 'var(--muted)', fontSize: '0.8rem' }}>→</span>
                 </a>
               ))}
             </div>
@@ -164,7 +159,7 @@ export default function Contact() {
                 height: '100%', display: 'flex', flexDirection: 'column',
                 alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: 16,
               }}>
-                <div style={{ fontSize: '3rem', display: 'inline-flex', color: 'var(--accent)' }}><FaCircleCheck /></div>
+                <div style={{ fontSize: '3rem' }}>✅</div>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', color: 'var(--accent)' }}>Message Sent!</h3>
                 <p style={{ fontFamily: 'var(--font-body)', color: 'rgba(232,244,248,0.6)', fontSize: '0.9rem' }}>
                   Thanks for reaching out. I'll get back to you within 24 hours.
@@ -226,7 +221,7 @@ export default function Contact() {
         </div>
 
         {/* Footer */}
-        <div className="contact-footer" style={{
+        <div style={{
           marginTop: 80, paddingTop: 32,
           borderTop: '1px solid rgba(74,96,112,0.2)',
           display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16,

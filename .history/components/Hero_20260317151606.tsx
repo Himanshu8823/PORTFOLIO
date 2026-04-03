@@ -220,14 +220,14 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="grid-bg hero-section" style={{
+    <section id="home" style={{
       minHeight: '100vh',
       display: 'flex',
       alignItems: 'center',
       position: 'relative',
       overflow: 'hidden',
       padding: '100px 60px 60px',
-    }}>
+    }} className="grid-bg">
       <ParticleCanvas />
 
       {/* Ambient blobs */}
@@ -261,7 +261,7 @@ export default function Hero() {
         }} />
       ))}
 
-      <div className="hero-layout" style={{
+      <div style={{
         position: 'relative', zIndex: 1,
         display: 'flex', alignItems: 'center',
         justifyContent: 'space-between',
@@ -271,7 +271,7 @@ export default function Hero() {
         transition: 'all 1s cubic-bezier(0.16,1,0.3,1)',
       }}>
         {/* Text content */}
-        <div className="hero-text" style={{ flex: 1, maxWidth: 600 }}>
+        <div style={{ flex: 1, maxWidth: 600 }}>
           {/* Status badge */}
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -331,7 +331,7 @@ export default function Hero() {
           </p>
 
           {/* Stats */}
-          <div className="hero-stats" style={{ display: 'flex', gap: 32, marginBottom: 40 }}>
+          <div style={{ display: 'flex', gap: 32, marginBottom: 40 }}>
             {[
               { num: '40%', label: 'Latency Cut', suffix: '' },
               { num: '35%', label: 'Faster Pages', suffix: '' },
@@ -372,9 +372,9 @@ export default function Hero() {
           </div>
 
           {/* Social links */}
-          <div className="hero-social" style={{ display: 'flex', gap: 20, marginTop: 40, alignItems: 'center' }}>
+          <div style={{ display: 'flex', gap: 20, marginTop: 40, alignItems: 'center' }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--muted)', letterSpacing: '0.2em' }}>CONNECT</span>
-            <div className="hero-social-divider" style={{ flex: 1, height: 1, background: 'rgba(74,96,112,0.3)' }} />
+            <div style={{ flex: 1, height: 1, background: 'rgba(74,96,112,0.3)' }} />
             {[
               { label: 'LinkedIn', href: 'https://www.linkedin.com/in/himanshu-kawale-69912b189', icon: 'in' },
               { label: 'GitHub', href: 'https://github.com/himanshu8823', icon: 'gh' },
@@ -402,13 +402,13 @@ export default function Hero() {
         </div>
 
         {/* 3D Orb */}
-        <div className="hero-orb-wrap" style={{ flexShrink: 0 }}>
+        <div style={{ flexShrink: 0 }}>
           <Orb3D />
         </div>
       </div>
 
       {/* Scroll hint */}
-      <div className="hero-scroll-hint" style={{
+      <div style={{
         position: 'absolute',
         bottom: 32, left: '50%', transform: 'translateX(-50%)',
         display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,

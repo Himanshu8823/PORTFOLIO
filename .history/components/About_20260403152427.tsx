@@ -21,7 +21,7 @@ export default function About() {
   const r1 = useReveal(), r2 = useReveal();
 
   return (
-    <section id="about" className="about-section" style={{ padding: '120px 60px', maxWidth: 1200, margin: '0 auto' }}>
+    <section id="about" style={{ padding: '120px 60px', maxWidth: 1200, margin: '0 auto' }}>
       <div className="reveal" ref={r1} style={{ marginBottom: 60 }}>
         <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, letterSpacing: '-0.02em' }}>
           Who I Am
@@ -29,7 +29,7 @@ export default function About() {
         <div className="cyber-divider" style={{ marginTop: 16, maxWidth: 300 }} />
       </div>
 
-      <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'start' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'start' }}>
         {/* Left: Text */}
         <div className="reveal" ref={r2}>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: '1.05rem', lineHeight: 1.9, color: 'rgba(232,244,248,0.7)', marginBottom: 24 }}>
@@ -39,7 +39,7 @@ export default function About() {
             I specialize in building end-to-end web solutions — from designing intuitive React UIs to architecting robust Node.js backends. I've worked as a Full Stack Developer Intern at <span style={{ color: 'var(--accent2)' }}>Levitation Infotech</span>, where I engineered real-time CMS systems and improved performance metrics significantly.
           </p>
 
-          <div className="about-meta-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
             {[
               { label: 'Location', value: 'Jalgaon, India' },
               { label: 'Email', value: 'himanshukawale45@gmail.com' },
@@ -55,7 +55,7 @@ export default function About() {
         </div>
 
         {/* Right: Stats cards */}
-        <div className="about-stats-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           {[
             { num: '40%', label: 'Latency Reduced', color: 'var(--accent)', icon: FaBolt },
             { num: '35%', label: 'Faster Page Load', color: 'var(--accent2)', icon: FaRocket },

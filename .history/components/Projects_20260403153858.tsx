@@ -137,7 +137,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
           </div>
 
           {/* Links */}
-          <div className="project-links" style={{ display: 'flex', gap: 12 }}>
+          <div style={{ display: 'flex', gap: 12 }}>
             <a href={project.demo || '#'} target="_blank" className="hover-target" style={{
               fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.1em',
               padding: '8px 20px',

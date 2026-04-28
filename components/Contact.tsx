@@ -123,7 +123,7 @@ export default function Contact() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {[
                 { icon: MdEmail, label: 'Email', value: 'himanshukawale45@gmail.com', href: 'mailto:himanshukawale45@gmail.com' },
-                { icon: MdPhone, label: 'Phone', value: '+91 7558213669', href: 'tel:+917558213669' },
+                { icon: MdPhone, label: 'Phone', value: '+91 9960956302', href: 'tel:+919960956302' },
                 { icon: FaLinkedinIn, label: 'LinkedIn', value: 'Connect on LinkedIn', href: 'https://www.linkedin.com/in/himanshu-kawale-69912b189' },
                 { icon: FaGithub, label: 'GitHub', value: 'github.com/himanshu8823', href: 'https://github.com/himanshu8823' },
                 { icon: FaFileLines, label: 'Resume', value: 'View Resume (PDF)', href: '/Himanshu_Resume.pdf' },

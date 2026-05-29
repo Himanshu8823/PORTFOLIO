@@ -9,14 +9,24 @@ import Contact from "@/components/Contact";
 import Navbar from "@/components/Navbar";
 import CustomCursor from "@/components/CustomCursor";
 import SplashCursor from "@/components/SplashCursor";
+import { useGSAPAnimations, initSmoothScroll } from "@/lib/useGSAPAnimations";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
+  
   useEffect(() => setMounted(true), []);
+  useGSAPAnimations();
+
+  useEffect(() => {
+    if (mounted) {
+      initSmoothScroll();
+    }
+  }, [mounted]);
+
   if (!mounted) return null;
 
   return (
-    <main className="bg-[#020408] min-h-screen overflow-x-hidden">
+    <main className="bg-[#020408] min-h-screen overflow-x-hidden" style={{ background: 'var(--bg)' }}>
       <SplashCursor
         SIM_RESOLUTION={64}
         DYE_RESOLUTION={512}

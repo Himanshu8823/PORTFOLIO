@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import { HiBars3 } from "react-icons/hi2";
+import { HiBars3, HiMoon, HiSun } from "react-icons/hi2";
+import { useTheme } from "./ThemeProvider";
 
 const links = [
   { label: "About", href: "#about" },
@@ -14,6 +15,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => {
@@ -57,7 +59,7 @@ export default function Navbar() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      background: scrolled ? 'rgba(2,4,8,0.85)' : 'transparent',
+      background: scrolled ? 'rgba(var(--bg-rgb), 0.85)' : 'transparent',
       backdropFilter: scrolled ? 'blur(20px)' : 'none',
       borderBottom: scrolled ? '1px solid rgba(0,240,255,0.08)' : '1px solid transparent',
       transition: 'all 0.4s ease',
@@ -116,10 +118,43 @@ export default function Navbar() {
         ))}
       </ul>
 
-      {/* CTA */}
-      <a href="#contact" className="btn-primary hover-target nav-cta" style={{ fontSize: '0.7rem', padding: '8px 20px' }}>
-        Hire Me
-      </a>
+      {/* Theme toggle + CTA container */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+        {/* Theme Toggle Button */}
+        <button
+          onClick={toggleTheme}
+          aria-label="Toggle theme"
+          style={{
+            width: 40,
+            height: 40,
+            border: '1px solid var(--glass-border)',
+            background: 'var(--glass)',
+            color: 'var(--accent)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
+            transition: 'all 0.3s ease',
+          }}
+          className="theme-toggle-btn"
+          onMouseEnter={e => {
+            (e.currentTarget as HTMLElement).style.background = 'rgba(0,240,255,0.15)';
+            (e.currentTarget as HTMLElement).style.borderColor = 'var(--accent)';
+          }}
+          onMouseLeave={e => {
+            (e.currentTarget as HTMLElement).style.background = 'var(--glass)';
+            (e.currentTarget as HTMLElement).style.borderColor = 'var(--glass-border)';
+          }}
+        >
+          {theme === 'dark' ? <HiSun size={18} /> : <HiMoon size={18} />}
+        </button>
+
+        {/* CTA */}
+        <a href="#contact" className="btn-primary hover-target nav-cta" style={{ fontSize: '0.7rem', padding: '8px 20px' }}>
+          Hire Me
+        </a>
+      </div>
 
       {/* Mobile menu trigger */}
       <button

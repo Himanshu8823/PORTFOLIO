@@ -1,3 +1,4 @@
+"use client";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect } from "react";
@@ -79,30 +80,18 @@ export function useGSAPAnimations() {
 export function smoothScrollTo(elementId: string) {
   const element = document.getElementById(elementId);
   if (element) {
-    gsap.to(window, {
-      scrollTo: {
-        y: element,
-        autoKill: true,
-      },
-      duration: 1.5,
-      ease: "power3.inOut",
-    });
+    element.scrollIntoView({ behavior: 'smooth' });
   }
 }
 
 // Add smooth scroll behavior
 export function initSmoothScroll() {
-  // Register ScrollToPlugin if not already registered
-  if (!gsap.plugins.scrollTo) {
-    gsap.registerPlugin(ScrollTrigger);
-  }
-
   // Enable smooth scrolling on all anchor links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
-      e.preventDefault();
       const href = this.getAttribute("href");
       if (href && href !== "#") {
+        e.preventDefault();
         smoothScrollTo(href.slice(1));
       }
     });

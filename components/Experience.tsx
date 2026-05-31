@@ -127,7 +127,7 @@ export default function Experience() {
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--glass-border)'; (e.currentTarget as HTMLElement).style.background = 'var(--glass)'; }}
                 >
                   <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', flexShrink: 0, marginTop: 1 }}>▸</span>
-                  <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.9rem', color: 'rgba(232,244,248,0.7)', lineHeight: 1.6 }}>{h}</span>
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.9rem', color: 'var(--text-tertiary)', lineHeight: 1.6 }}>{h}</span>
                 </div>
               ))}
             </div>
@@ -146,7 +146,7 @@ export default function Experience() {
                   <div key={i} style={{ paddingLeft: 16, paddingBottom: 24, position: 'relative' }}>
                     <div style={{ position: 'absolute', left: -14, top: 6, width: 10, height: 10, borderRadius: '50%', background: i === 0 ? 'var(--accent)' : 'var(--muted)', boxShadow: i === 0 ? '0 0 10px var(--accent)' : 'none' }} />
                     <div style={{ fontFamily: 'var(--font-display)', fontSize: '0.9rem', fontWeight: 600, color: 'var(--text)', marginBottom: 2 }}>{e.school}</div>
-                    <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.8rem', color: 'rgba(232,244,248,0.5)', marginBottom: 4 }}>{e.degree}</div>
+                    <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: 4 }}>{e.degree}</div>
                     <div className="experience-edu-row" style={{ display: 'flex', gap: 12 }}>
                       <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--muted)' }}>{e.period}</span>
                       <span className="tag" style={{ fontSize: '0.58rem' }}>{e.grade}</span>

@@ -112,7 +112,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
 
           <p style={{
             fontFamily: 'var(--font-body)', fontSize: '0.875rem', lineHeight: 1.7,
-            color: 'rgba(232,244,248,0.6)', marginBottom: 20,
+            color: 'var(--text-tertiary)', marginBottom: 20,
           }}>
             {project.desc}
           </p>
@@ -122,7 +122,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
             {project.highlights.map((h: string, i: number) => (
               <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 6 }}>
                 <span style={{ color: project.color, fontSize: '0.7rem', marginTop: 3, flexShrink: 0 }}>◆</span>
-                <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8rem', color: 'rgba(232,244,248,0.55)', lineHeight: 1.5 }}>{h}</span>
+                <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8rem', color: 'var(--text-tertiary)', lineHeight: 1.5 }}>{h}</span>
               </div>
             ))}
           </div>
@@ -153,7 +153,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
               <a href={project.github} target="_blank" className="hover-target" style={{
                 fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.1em',
                 padding: '8px 20px',
-                border: '1px solid rgba(74,96,112,0.4)',
+                border: '1px solid var(--glass-border)',
                 color: 'var(--muted)', textDecoration: 'none',
                 clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
               }}>
@@ -365,7 +365,7 @@ export default function Projects() {
             Featured Work
           </h2>
           <div className="cyber-divider" style={{ marginTop: 16, maxWidth: 300 }} />
-          <p style={{ marginTop: 16, fontFamily: 'var(--font-body)', fontSize: '1rem', color: 'rgba(232,244,248,0.5)', maxWidth: 500 }}>
+          <p style={{ marginTop: 16, fontFamily: 'var(--font-body)', fontSize: '1rem', color: 'var(--text-tertiary)', maxWidth: 500 }}>
             A selection of projects that showcase my engineering skills and problem-solving approach.
           </p>
         </div>

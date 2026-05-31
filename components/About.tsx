@@ -32,10 +32,10 @@ export default function About() {
       <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'start' }}>
         {/* Left: Text */}
         <div className="reveal" ref={r2}>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: '1.05rem', lineHeight: 1.9, color: 'rgba(232,244,248,0.7)', marginBottom: 24 }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: '1.05rem', lineHeight: 1.9, color: 'var(--text-tertiary)', marginBottom: 24 }}>
             I'm a <span style={{ color: 'var(--accent)' }}>Full Stack Developer</span> currently pursuing B.Tech in Computer Science Engineering (AI & ML) at G.H. Raisoni College of Engineering and Management, Jalgaon, with hands-on internship experience building scalable full-stack products.
           </p>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: '1.05rem', lineHeight: 1.9, color: 'rgba(232,244,248,0.7)', marginBottom: 32 }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: '1.05rem', lineHeight: 1.9, color: 'var(--text-tertiary)', marginBottom: 32 }}>
             I specialize in building end-to-end web solutions — from designing intuitive React UIs to architecting robust Node.js backends. I've worked as a Full Stack Developer Intern at <span style={{ color: 'var(--accent2)' }}>Levitation Infotech</span>, where I engineered real-time CMS systems and improved performance metrics significantly.
           </p>
 

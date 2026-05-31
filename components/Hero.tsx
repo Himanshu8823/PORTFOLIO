@@ -322,7 +322,7 @@ export default function Hero() {
             fontFamily: 'var(--font-body)',
             fontSize: '1rem',
             lineHeight: 1.8,
-            color: 'rgba(232,244,248,0.6)',
+            color: 'var(--text-tertiary)',
             marginBottom: 40,
             maxWidth: 480,
           }}>
@@ -359,13 +359,13 @@ export default function Hero() {
               letterSpacing: '0.1em',
               padding: '12px 32px',
               color: 'var(--muted)',
-              border: '1px solid rgba(74,96,112,0.4)',
+              border: '1px solid var(--glass-border)',
               textDecoration: 'none',
               transition: 'color 0.3s, border-color 0.3s',
               clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))',
             }}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--text)'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(232,244,248,0.3)'; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--muted)'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(74,96,112,0.4)'; }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--text)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--accent)'; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--muted)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--glass-border)'; }}
             >
               Contact Me
             </a>
@@ -383,7 +383,7 @@ export default function Hero() {
             ].map(s => (
               <a key={s.label} href={s.href} target="_blank" className="hover-target" style={{
                 width: 36, height: 36,
-                border: '1px solid rgba(74,96,112,0.4)',
+                border: '1px solid var(--glass-border)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.65rem',
@@ -392,8 +392,8 @@ export default function Hero() {
                 transition: 'all 0.3s',
                 clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))',
               }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--accent)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--accent)'; (e.currentTarget as HTMLElement).style.background = 'rgba(0,240,255,0.08)'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--muted)'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(74,96,112,0.4)'; (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--accent)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--accent)'; (e.currentTarget as HTMLElement).style.background = 'var(--glass)'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--muted)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--glass-border)'; (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
               >
                 {s.icon}
               </a>

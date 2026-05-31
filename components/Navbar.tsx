@@ -59,7 +59,7 @@ export default function Navbar() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      background: scrolled ? 'rgba(2,4,8,0.85)' : 'transparent',
+      background: scrolled ? 'rgba(var(--nav-bg), 0.85)' : 'transparent',
       backdropFilter: scrolled ? 'blur(20px)' : 'none',
       borderBottom: scrolled ? '1px solid var(--glass-border)' : '1px solid transparent',
       transition: 'all 0.4s ease',
@@ -82,7 +82,7 @@ export default function Navbar() {
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           fontSize: '0.75rem', fontWeight: 800,
           clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
-          background: 'rgba(0,240,255,0.08)',
+          background: 'var(--glass)',
         }}>HK</span>
         <span className="nav-name" style={{ color: 'var(--text)', fontWeight: 400 }}>Himanshu</span>
         <span className="nav-name">Kawale</span>
@@ -202,8 +202,8 @@ export default function Navbar() {
           right: 0,
           height: '100dvh',
           width: 'min(82vw, 320px)',
-          background: 'rgba(2,4,8,0.96)',
-          borderLeft: '1px solid rgba(0,240,255,0.18)',
+          background: 'rgba(var(--bg-overlay), 0.96)',
+          borderLeft: '1px solid var(--glass-border)',
           backdropFilter: 'blur(18px)',
           transform: menuOpen ? 'translateX(0)' : 'translateX(100%)',
           transition: 'transform 0.3s cubic-bezier(0.16,1,0.3,1)',
@@ -220,7 +220,7 @@ export default function Navbar() {
             aria-label="Close navigation menu"
             onClick={() => setMenuOpen(false)}
             style={{
-              border: '1px solid rgba(74,96,112,0.45)',
+              border: '1px solid var(--glass-border)',
               background: 'transparent',
               color: 'var(--muted)',
               width: 34,
@@ -247,9 +247,9 @@ export default function Navbar() {
                 textTransform: 'uppercase',
                 textDecoration: 'none',
                 color: active === l.href.slice(1) ? 'var(--accent)' : 'var(--text)',
-                border: '1px solid rgba(74,96,112,0.35)',
+                border: '1px solid var(--glass-border)',
                 padding: '11px 12px',
-                background: active === l.href.slice(1) ? 'rgba(0,240,255,0.08)' : 'transparent',
+                background: active === l.href.slice(1) ? 'var(--glass)' : 'transparent',
               }}
             >
               {l.label}

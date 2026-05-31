@@ -28,13 +28,13 @@ export default function Contact() {
 
   const inputStyle = {
     width: '100%', padding: '14px 18px',
-    background: 'rgba(255,255,255,0.03)',
-    border: '1px solid rgba(74,96,112,0.3)',
+    background: 'var(--glass)',
+    border: '1px solid var(--glass-border)',
     color: 'var(--text)', fontFamily: 'var(--font-body)', fontSize: '0.9rem',
     outline: 'none',
     transition: 'border-color 0.3s',
     borderRadius: 0,
-  };
+  } as React.CSSProperties;
 
   const submitContactMutation = useMutation({
     mutationFn: async (payload: { name: string; email: string; message: string }) => {
@@ -95,7 +95,7 @@ export default function Contact() {
             Let's Build Together
           </h2>
           <div className="cyber-divider" style={{ marginTop: 16, maxWidth: 300, margin: '16px auto 0' }} />
-          <p style={{ marginTop: 20, fontFamily: 'var(--font-body)', fontSize: '1rem', color: 'rgba(232,244,248,0.5)', maxWidth: 500, margin: '20px auto 0' }}>
+          <p style={{ marginTop: 20, fontFamily: 'var(--font-body)', fontSize: '1rem', color: 'var(--text-tertiary)', maxWidth: 500, margin: '20px auto 0' }}>
             Have a project in mind or want to discuss opportunities? Let's connect and create something amazing.
           </p>
         </div>
@@ -113,7 +113,7 @@ export default function Contact() {
                 <br />
                 <span style={{ color: 'var(--text)' }}>collaborate?</span>
               </div>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', color: 'rgba(232,244,248,0.6)', lineHeight: 1.8 }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', color: 'var(--text-tertiary)', lineHeight: 1.8 }}>
                 I'm currently available for freelance projects, full-time positions, and internships. 
                 Based in Jalgaon, India — open to remote work globally.
               </p>
@@ -166,7 +166,7 @@ export default function Contact() {
               }}>
                 <div style={{ fontSize: '3rem', display: 'inline-flex', color: 'var(--accent)' }}><FaCircleCheck /></div>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', color: 'var(--accent)' }}>Message Sent!</h3>
-                <p style={{ fontFamily: 'var(--font-body)', color: 'rgba(232,244,248,0.6)', fontSize: '0.9rem' }}>
+                <p style={{ fontFamily: 'var(--font-body)', color: 'var(--text-tertiary)', fontSize: '0.9rem' }}>
                   Thanks for reaching out. I'll get back to you within 24 hours.
                 </p>
               </div>
@@ -183,8 +183,8 @@ export default function Contact() {
                       placeholder="Your full name"
                       value={form.name}
                       onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                      onFocus={e => (e.target.style.borderColor = 'rgba(0,240,255,0.4)')}
-                      onBlur={e => (e.target.style.borderColor = 'rgba(74,96,112,0.3)')}
+                      onFocus={e => (e.target.style.borderColor = 'var(--accent)')}
+                      onBlur={e => (e.target.style.borderColor = 'var(--glass-border)')}
                     />
                   </div>
                   <div>
@@ -195,8 +195,8 @@ export default function Contact() {
                       placeholder="your@email.com"
                       value={form.email}
                       onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                      onFocus={e => (e.target.style.borderColor = 'rgba(0,240,255,0.4)')}
-                      onBlur={e => (e.target.style.borderColor = 'rgba(74,96,112,0.3)')}
+                      onFocus={e => (e.target.style.borderColor = 'var(--accent)')}
+                      onBlur={e => (e.target.style.borderColor = 'var(--glass-border)')}
                     />
                   </div>
                   <div>
@@ -207,8 +207,8 @@ export default function Contact() {
                       placeholder="Tell me about your project..."
                       value={form.message}
                       onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                      onFocus={e => (e.target.style.borderColor = 'rgba(0,240,255,0.4)')}
-                      onBlur={e => (e.target.style.borderColor = 'rgba(74,96,112,0.3)')}
+                      onFocus={e => (e.target.style.borderColor = 'var(--accent)')}
+                      onBlur={e => (e.target.style.borderColor = 'var(--glass-border)')}
                     />
                   </div>
                   <button className="btn-primary hover-target" onClick={handleSubmit} style={{ width: '100%', fontSize: '0.75rem' }}>

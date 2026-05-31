@@ -148,9 +148,9 @@ export default function Skills() {
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.7rem',
                 padding: '6px 14px',
-                border: '1px solid rgba(74,96,112,0.3)',
+                border: '1px solid var(--glass-border)',
                 color: 'var(--muted)',
-                background: 'rgba(255,255,255,0.02)',
+                background: 'var(--glass)',
                 transition: 'all 0.3s cubic-bezier(0.34,1.56,0.64,1)',
                 clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))',
                 cursor: 'none',
@@ -161,13 +161,15 @@ export default function Skills() {
                 const c = colors[i % 3];
                 (e.currentTarget as HTMLElement).style.color = c;
                 (e.currentTarget as HTMLElement).style.borderColor = c;
-                (e.currentTarget as HTMLElement).style.background = c.replace(')', ', 0.08)').replace('var(', 'rgba(').replace('--accent', '0,240,255').replace('2', '123,47,255').replace('3', '255,60,172');
+                (e.currentTarget as HTMLElement).style.background = c;
+                (e.currentTarget as HTMLElement).style.opacity = '0.15';
                 (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px) scale(1.05)';
               }}
               onMouseLeave={e => {
                 (e.currentTarget as HTMLElement).style.color = 'var(--muted)';
-                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(74,96,112,0.3)';
-                (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.02)';
+                (e.currentTarget as HTMLElement).style.borderColor = 'var(--glass-border)';
+                (e.currentTarget as HTMLElement).style.background = 'var(--glass)';
+                (e.currentTarget as HTMLElement).style.opacity = '1';
                 (e.currentTarget as HTMLElement).style.transform = 'translateY(0) scale(1)';
               }}>
                 {t}
